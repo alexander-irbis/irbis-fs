@@ -1,0 +1,35 @@
+[package]
+name = "irbis-fs"
+version = "0.0.7"
+authors = ["alexander.irbis <irbis.labs@gmail.com>"]
+exclude = [
+    ".gitignore",
+    ".travis.yml",
+    "appveyor.yml",
+]
+build = "build.rs"
+publish = false
+
+
+[[bin]]
+name="ifsd"
+
+
+[[bin]]
+name="ifs"
+
+
+[dependencies]
+clippy = { version = "*", optional = true }
+log = { version = "*" }
+log4rs = { version = "*", features = ["toml", "yaml"] }
+trace = { version = "*", optional = true }
+
+compat = { path = "sub/compat", version = "*" }
+
+fs = { path = "sub/fs", version = "0.*" }
+
+
+[features]
+default = []
+dev = ["clippy", "trace"]

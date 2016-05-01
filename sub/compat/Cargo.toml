@@ -1,0 +1,11 @@
+[package]
+name = "compat"
+version = "0.1.0"
+authors = ["Sebastian Waisbrot <seppo0010@gmail.com>"]
+publish = false
+
+[target.'cfg(unix)'.dependencies]
+libc = "< 0.2"
+
+[target.'cfg(windows)'.dependencies]
+kernel32-sys = "0.1.2"

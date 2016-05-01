@@ -1,0 +1,15 @@
+[package]
+name = "protocol"
+version = "0.1.0"
+authors = ["Alexander Irbis <irbis.labs@gmail.com>"]
+publish = false
+
+
+[target.'cfg(unix)'.dependencies]
+unix_socket = "0.4.3"
+
+[dependencies]
+log             = { version = "*" }
+net2            = { version = "0.2.2", features = ["nightly"] }
+trace           = "*"
+
