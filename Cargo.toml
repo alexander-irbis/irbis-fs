@@ -2,6 +2,7 @@
 name = "irbis-fs"
 version = "0.0.7"
 authors = ["alexander.irbis <irbis.labs@gmail.com>"]
+license = "MIT/Apache-2.0"
 exclude = [
     ".gitignore",
     ".travis.yml",
@@ -20,16 +21,15 @@ name="ifs"
 
 
 [dependencies]
-clippy = { version = "*", optional = true }
-log = { version = "*" }
-log4rs = { version = "*", features = ["toml", "yaml"] }
-trace = { version = "*", optional = true }
+clippy      = { version = "*", optional = true }
+log         = { version = "*" }
+log4rs      = { version = "*", features = ["toml"] }
+trace       = { version = "*", optional = true }
 
-compat = { path = "sub/compat", version = "*" }
-
-fs = { path = "sub/fs", version = "0.*" }
+compat      = { path = "sub/compat", version = "*" }
+fs          = { path = "sub/fs", version = "0.*" }
 
 
 [features]
-default = []
-dev = ["clippy", "trace"]
+default     = []
+dev         = ["clippy", "trace"]

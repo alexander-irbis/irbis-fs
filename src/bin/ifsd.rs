@@ -2,11 +2,10 @@
 
 #![cfg_attr(feature = "clippy", feature(plugin))]
 #![cfg_attr(feature = "clippy", plugin(clippy))]
+#![cfg_attr(feature = "clippy", allow(items_after_statements))]
 
 #![cfg_attr(feature = "trace", feature(custom_attribute, plugin))]
 #![cfg_attr(feature = "trace", plugin(trace))]
-
-#![cfg_attr(feature = "clippy", allow(items_after_statements))]
 
 
 #[macro_use] extern crate log;
@@ -64,16 +63,10 @@ fn main() {
     info!("Irbis FS server v. {}; compiled with {}", env!("CARGO_PKG_VERSION"), RUSTC_VERSION);
 
     let config = Config::new();
-//    match args().nth(1) {
-//        Some(f) => match Config.load(f) {
-//            Ok(_) => (),
-//            Err(_) => {
-//                exit(1);
-//            },
-//        },
-//        None => {},
-//    };
-	let (port, daemonize) = (config.port, config.daemonize);
+
+    args().nth(1).then(|f| Config.load(f).map_err(|err| {exit(1); err} ));
+
+    let (port, daemonize) = (config.port, config.daemonize);
     
     let mut server = match Server::new(config) {
         Ok(server) => server,
